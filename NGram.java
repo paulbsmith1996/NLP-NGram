@@ -343,17 +343,14 @@ public class NGram {
 	String crusoeFile = "r_crusoe.txt";
 	String whiteFangFile = "white_fang.txt";
 
-	System.out.println("Formatting " + aliceFile);
 	Formatter f = new Formatter(aliceFile);
 	String train = f.format();
 	nGram.learn(train);
 
-	System.out.println("Formatting " + crusoeFile);
 	f = new Formatter(crusoeFile);
 	train = f.format();
 	nGram.learn(train);
 
-	System.out.println("Formatting " + whiteFangFile);
 	f = new Formatter(whiteFangFile);
 	train = f.format();
 	nGram.learn(train);
