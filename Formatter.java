@@ -53,9 +53,10 @@ public class Formatter {
 
     /**
      * Tag used in the name of a new formatted file, to denote that it is correctly
-     * formatted.
+     * formatted, and extension used to denote a txt file.
      */
-    private static final String FORMAT_TAG = "_formatted";
+    public static final String FORMAT_TAG = "_formatted";
+    public static final String TXT_EXT = ".txt";
 
     /**
      * A list of miscellaneous punctuation that should be removed from the text of

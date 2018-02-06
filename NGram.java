@@ -39,6 +39,8 @@ import java.util.Random;
 
 import java.util.NoSuchElementException;
 
+import java.io.File;
+
 public class NGram {
     
     /**
@@ -339,21 +341,29 @@ public class NGram {
     public static void main(String[] args) {
 	NGram nGram = new NGram(3);
 
-	String aliceFile = "alice.txt";
-	String crusoeFile = "r_crusoe.txt";
-	String whiteFangFile = "white_fang.txt";
+	if(args.length < 1) {
+	    System.out.println("Please specify training file(s) from list:\n");
+	    
+	    File dir = new File(".");
+	    File[] fileList = dir.listFiles();
+	    for(File f: fileList) {
+		String fileName = f.getName();
+		if(fileName.endsWith(Formatter.TXT_EXT) 
+		   && !fileName.contains(Formatter.FORMAT_TAG)) {
+		    System.out.println(fileName);
+		}
+	    }
 
-	Formatter f = new Formatter(aliceFile);
-	String train = f.format();
-	nGram.learn(train);
-
-	f = new Formatter(crusoeFile);
-	train = f.format();
-	nGram.learn(train);
-
-	f = new Formatter(whiteFangFile);
-	train = f.format();
-	nGram.learn(train);
+	    System.out.println();
+	    return;
+	}
+	
+	for(int fileIndex = 0; fileIndex < args.length; fileIndex++) {
+	    String fileName = args[fileIndex];
+	    Formatter f = new Formatter(fileName);
+	    String train = f.format();
+	    nGram.learn(train);
+	}
 
 	System.out.println("Generating text\n\n");
 
